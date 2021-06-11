@@ -1,0 +1,116 @@
+@font-face {
+  font-family: "Cafe24SsurroundAir";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*,
+html,
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+input {
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+input:focus {
+  outline: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Cafe24SsurroundAir", sans-serif;
+}
+
+header {
+  width: 100%;
+  height: 10%;
+  background-color: darkolivegreen;
+}
+
+main {
+  width: 100%;
+  height: 80%;
+  background-color: blanchedalmond;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  width: 100%;
+  height: 10%;
+  background-color: cornflowerblue;
+}
+
+.opening-section {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  /* visibility: visible; */
+  /* animation: opening-one 2s ease forwards; */
+}
+
+.input-title {
+  font-size: 3rem;
+}
+
+.input-form {
+  font-family: "Cafe24SsurroundAir", sans-serif;
+  margin-top: 1rem;
+  width: 30rem;
+  font-size: 3rem;
+  border-bottom: 1px solid black;
+}
+
+@keyframes opening-two {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+
+@keyframes opening-one {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.input-title--big {
+  font-size: 8rem;
+}
+
+.input-title--sub {
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+.main-section {
+  /* opaicty: 0; */
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  opacity: 1;
+}
