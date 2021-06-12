@@ -1,6 +1,8 @@
 const ST_USERNAME = "USERNAME";
 const ST_PENDING = "PENDING";
 const ST_FINISHED = "FINISHED"
+const ST_COORDS = "COORDS"
+const API_KEYS = "d34e205fc1860bc4ac44b0128894690a";
 
 const body = document.querySelector("body");
 
@@ -12,12 +14,14 @@ const welcomeTitle = document.querySelector("#welcome-title");
 const input = document.querySelector("#input");
 const pending = document.querySelector("#pending");
 const finished = document.querySelector("#finished")
+const clock = document.querySelector("#clock");
+const weather = document.querySelector("#weather");
 
 let pendingDatabase = [];
 let finishedDatabase = [];
 
 function savePendingInStorage() {
-    localStorage.setItem(ST_PENDING, JSON.stringify(pendingDatabase));
+    localStorage.setItem(ST_PENDING, JSON.stringify(pendingDatabase)); 
 }
 
 function saveFinishedInStorage() {
@@ -63,14 +67,17 @@ function handlePending(value) {
 function paintFinished(value) {
     const list = document.createElement("li");
     const span = document.createElement("span");
-    const deleteFinishedBtn = document.createElement("button");
-    const pendingBtn = document.createElement("button");
+    const deleteFinishedBtn = document.createElement("i");
+    const pendingBtn = document.createElement("i");
     const finishedId = finishedDatabase.length + 1;
 
     list.id = finishedId;
     span.innerText = value;
-    deleteFinishedBtn.innerText = "❌";
-    pendingBtn.innerText = "⏫";
+    deleteFinishedBtn.classList.add("fas");
+    deleteFinishedBtn.classList.add("fa-minus");
+    pendingBtn.classList.add("fas")
+    pendingBtn.classList.add("fa-plus");
+
 
     deleteFinishedBtn.addEventListener("click", deleteFinishedList);
     pendingBtn.addEventListener("click", handlePending);
@@ -93,14 +100,16 @@ function paintFinished(value) {
 function paintPending(value) {
     const list = document.createElement("li");
     const span = document.createElement("span");
-    const deleteBtn = document.createElement("button");
-    const finishedBtn = document.createElement("button");
+    const deleteBtn = document.createElement("i");
+    const finishedBtn = document.createElement("i");
     const pendingId = pendingDatabase.length + 1;
 
     list.id = pendingId;
     span.innerText = `${value} `;
-    deleteBtn.innerText = "❌";
-    finishedBtn.innerText = "✅";
+    deleteBtn.classList.add("fas");
+    deleteBtn.classList.add("fa-minus");
+    finishedBtn.classList.add("fas")
+    finishedBtn.classList.add("fa-check");
 
     deleteBtn.addEventListener("click", deletePendingList);
     finishedBtn.addEventListener("click", moveFinished);
@@ -132,10 +141,11 @@ function showMain() {
     const loadedPending = localStorage.getItem(ST_PENDING);
     const loadedFinished = localStorage.getItem(ST_FINISHED);
      
-    if (loadedPending) {
+    if (loadedPending !== null) {
         const parsedPending = JSON.parse(loadedPending);
         parsedPending.forEach(element => { paintPending(element.text)});
-    } else if (loadedFinished) {
+    } 
+    if (loadedFinished !== null) {
         const parsedFinished = JSON.parse(loadedFinished);
         parsedFinished.forEach(element => { paintFinished(element.text)});
     }
@@ -159,7 +169,7 @@ function showOpening() {
     opneingSection.addEventListener("submit", handleOpening);
 }
 
-function defaultLoader() {
+function listLoader() {
     const loadedUsername = localStorage.getItem(ST_USERNAME);
     if (loadedUsername) {
         showMain();
@@ -176,9 +186,77 @@ function imageLoader() {
     body.appendChild(image);
 }
 
+function clockLoader() {
+    const time = new Date();
+    const hour = time.getHours();
+    const minutes = time.getMinutes();
+
+    clock.innerHTML=`${hour<10 ? `0${hour}` : hour}:${minutes<10 ? `0${minutes}` : minutes}`;
+    setInterval(clockLoader, 1000);
+}
+
+function saveCoordsInStorage(coordsObj) {
+    localStorage.setItem(ST_COORDS, JSON.stringify(coordsObj));
+} 
+
+async function showWeather(lat, lon) {
+    console.log(lat.toFixed(2));
+    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEYS}&units=metric&&lang=kr`);
+    const json = await response.json();
+    console.log(json)
+    const temp = json.main.temp;
+    const place = json.name;
+    const description = json.weather[0].description;
+    
+    const tempBox = document.createElement("span");
+    const placeBox = document.createElement("span");
+    const descriptionBox = document.createElement("span");
+
+    tempBox.innerHTML=`현재 기온 ${temp} 도 +`;
+    descriptionBox.innerHTML=`${description} +`
+    placeBox.innerHTML=`${place}`;
+
+    weather.appendChild(tempBox);
+    weather.appendChild(descriptionBox);
+    weather.appendChild(placeBox);
+}
+
+function handleWeatherSuccess(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    const coordsObj = {
+        latitude,
+        longitude
+    }
+    saveCoordsInStorage(coordsObj);
+    showWeather(latitude, longitude);
+}
+
+function handleWeatherError() {
+    const errorBox = document.createElement("span");
+    errorBox.innerHTML="현재 위치를 가져올 수 없습니다."
+    weather.appendChild(errorBox);
+}
+
+function askForCoords() {
+    navigator.geolocation.getCurrentPosition(handleWeatherSuccess, handleWeatherError);
+}
+
+function weatherLoader() {
+    const loadedCoords = localStorage.getItem(ST_COORDS)
+    if (loadedCoords === null) {
+        askForCoords();
+    } else {
+        const parsedCoords = JSON.parse(loadedCoords);
+        showWeather(parsedCoords.latitude, parsedCoords.longitude);
+    }
+}
+
 function init() {
     imageLoader();
-    defaultLoader();
+    listLoader();
+    clockLoader();
+    weatherLoader();
 }
 
 init();

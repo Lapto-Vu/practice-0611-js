@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>META</title>
+    <title>document</title>
   </head>
   <body>
     <main>
+      <section id="weather"></section>
       <section class="opening-section">
         <span class="input-title">당신의 이름은 무엇입니까?</span>
         <form>
@@ -16,29 +17,18 @@
         </form>
       </section>
       <section class="main-section">
-        <span class="input-title--big">12:23</span>
+        <span class="input-title--mini">현재 시간</span>
+        <span id="clock" class="input-title--big">12:23</span>
         <span id="welcome-title" class="input-title">안녕하세요! 땡땡씨.</span>
         <span class="input-title--sub">오늘의 할일을 적어보세요.</span>
         <form>
           <input id="input" class="input-form" type="text" />
         </form>
-        <ul id="pending"></ul>
+        <ul id="pending">
+          할 일
+        </ul>
         <ul id="finished">
-          <li>
-            <span
-              >무엇이좋을까요.무엇이좋을까요.무엇이좋을까요.무엇이좋을까요.무엇이좋을까요</span
-            >
-            <i class="fas fa-minus"></i>
-            <i class="fas fa-check"></i>
-          </li>
-          <li>
-            <span
-              >무엇이좋을까요.무엇이좋을까요.무엇이좋을까요.무엇이좋을까요.무엇이좋을까요</span
-            >
-            <i class="fas fa-minus"></i>
-            <i class="fas fa-check"></i>
-          </li>
-          <li></li>
+          끝 냄
         </ul>
       </section>
     </main>
