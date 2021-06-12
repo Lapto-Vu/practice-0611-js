@@ -201,7 +201,7 @@ function saveCoordsInStorage(coordsObj) {
 
 async function showWeather(lat, lon) {
     console.log(lat.toFixed(2));
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEYS}&units=metric&&lang=kr`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEYS}&units=metric&&lang=kr`);
     const json = await response.json();
     console.log(json)
     const temp = json.main.temp;
