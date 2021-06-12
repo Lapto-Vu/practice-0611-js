@@ -1,76 +1,10 @@
+@import url("reset.css");
 @font-face {
   font-family: "Cafe24SsurroundAir";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff")
     format("woff");
   font-weight: normal;
   font-style: normal;
-}
-
-*,
-html,
-body {
-  margin: 0;
-  box-sizing: border-box;
-}
-
-input {
-  border-style: none;
-  background-color: rgba(0, 0, 0, 0);
-}
-
-input:focus {
-  outline: none;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  font-family: "Cafe24SsurroundAir", sans-serif;
-}
-
-header {
-  width: 100%;
-  height: 10%;
-  background-color: darkolivegreen;
-}
-
-main {
-  width: 100%;
-  height: 80%;
-  background-color: blanchedalmond;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-footer {
-  width: 100%;
-  height: 10%;
-  background-color: cornflowerblue;
-}
-
-.opening-section {
-  position: absolute;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  opacity: 0;
-  visibility: hidden;
-  /* visibility: visible; */
-  /* animation: opening-one 2s ease forwards; */
-}
-
-.input-title {
-  font-size: 3rem;
-}
-
-.input-form {
-  font-family: "Cafe24SsurroundAir", sans-serif;
-  margin-top: 1rem;
-  width: 30rem;
-  font-size: 3rem;
-  border-bottom: 1px solid black;
 }
 
 @keyframes opening-two {
@@ -95,6 +29,60 @@ footer {
   }
 }
 
+*,
+html,
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+input {
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+input:focus {
+  outline: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Cafe24SsurroundAir", sans-serif;
+  color: white;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.opening-section {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  visibility: hidden;
+}
+
+.input-title {
+  font-size: 2rem;
+  margin: 2rem 0rem;
+}
+
+.input-form {
+  font-family: "Cafe24SsurroundAir", sans-serif;
+  margin-top: 1rem;
+  width: 30rem;
+  font-size: 3rem;
+  border-bottom: 1px solid black;
+}
+
 .input-title--big {
   font-size: 8rem;
 }
@@ -105,12 +93,68 @@ footer {
 }
 
 .main-section {
-  /* opaicty: 0; */
   width: 100%;
   height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  opacity: 0;
+}
+
+#pending,
+#finished {
+  min-width: 30rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 2.5rem;
+  padding: 0 10px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  list-style: none;
+}
+
+li:hover i {
   opacity: 1;
+  transition: 1s ease;
+}
+
+li > span {
+  margin-right: 10px;
+}
+
+span + i {
+  margin: 0 20px;
+}
+
+i {
+  opacity: 0;
+  transition: 1s ease;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+.background-image {
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

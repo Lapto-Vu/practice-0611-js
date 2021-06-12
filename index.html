@@ -8,24 +8,44 @@
     <title>META</title>
   </head>
   <body>
-    <header></header>
     <main>
       <section class="opening-section">
         <span class="input-title">당신의 이름은 무엇입니까?</span>
         <form>
-          <input class="input-form" naem="name" type="text" />
+          <input id="username" class="input-form" naem="name" type="text" />
         </form>
       </section>
       <section class="main-section">
         <span class="input-title--big">12:23</span>
-        <span class="input-title">안녕하세요! 땡땡씨.</span>
+        <span id="welcome-title" class="input-title">안녕하세요! 땡땡씨.</span>
         <span class="input-title--sub">오늘의 할일을 적어보세요.</span>
         <form>
-          <input class="input-form" type="text" />
+          <input id="input" class="input-form" type="text" />
         </form>
+        <ul id="pending"></ul>
+        <ul id="finished">
+          <li>
+            <span
+              >무엇이좋을까요.무엇이좋을까요.무엇이좋을까요.무엇이좋을까요.무엇이좋을까요</span
+            >
+            <i class="fas fa-minus"></i>
+            <i class="fas fa-check"></i>
+          </li>
+          <li>
+            <span
+              >무엇이좋을까요.무엇이좋을까요.무엇이좋을까요.무엇이좋을까요.무엇이좋을까요</span
+            >
+            <i class="fas fa-minus"></i>
+            <i class="fas fa-check"></i>
+          </li>
+          <li></li>
+        </ul>
       </section>
     </main>
-    <footer></footer>
+    <script
+      src="https://kit.fontawesome.com/49d27cb357.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js"></script>
   </body>
 </html>
