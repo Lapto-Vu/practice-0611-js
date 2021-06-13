@@ -98,6 +98,7 @@ function paintFinished(value) {
 }
 
 function paintPending(value) {
+    if (!value) return
     const list = document.createElement("li");
     const span = document.createElement("span");
     const deleteBtn = document.createElement("i");

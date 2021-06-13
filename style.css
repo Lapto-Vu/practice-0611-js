@@ -50,6 +50,7 @@ body {
   height: 100vh;
   font-family: "Cafe24SsurroundAir", sans-serif;
   color: white;
+  background-color: black;
 }
 
 main {
@@ -59,6 +60,7 @@ main {
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
+  position: relative;
 }
 
 .opening-section {
@@ -165,9 +167,6 @@ i:hover {
   position: absolute;
   z-index: -1;
   top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
   width: 100%;
   height: 100%;
 }
@@ -183,4 +182,48 @@ i:hover {
 #weather span:nth-child(1),
 #weather span:nth-child(2) {
   margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .input-title--big {
+    font-size: 5rem;
+  }
+  .input-title {
+    font-size: 1.5rem;
+    margin: 2rem 0rem 1rem 0rem;
+  }
+
+  .input-title--sub {
+    font-size: 1.5rem;
+  }
+
+  .input-form {
+    font-family: "Cafe24SsurroundAir", sans-serif;
+    margin-top: 2rem;
+    color: white;
+    width: 21rem;
+    font-size: 1.5rem;
+    border-bottom: 5px solid white;
+  }
+
+  #pending,
+  #finished {
+    margin: 0;
+    margin-top: 2.5rem;
+    min-width: 20rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.3rem;
+  }
+
+  #pending {
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid white;
+  }
+
+  i {
+    opacity: 1;
+  }
 }
