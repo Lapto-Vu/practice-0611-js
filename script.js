@@ -253,9 +253,9 @@ function weatherLoader() {
 
 function init() {
     imageLoader();
-    listLoader();
     clockLoader();
     weatherLoader();
+    listLoader();
 }
 
 init();
